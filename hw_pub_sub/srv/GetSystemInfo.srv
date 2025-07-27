@@ -1,0 +1,12 @@
+# Request system information
+string request_type
+---
+# Response with system information
+std_msgs/Header header
+string system_name
+string ros_version
+string[] active_nodes
+string[] active_topics
+float64 system_uptime
+bool success
+string message

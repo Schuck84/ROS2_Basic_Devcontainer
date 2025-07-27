@@ -1,0 +1,67 @@
+# Configuration parameters for ROS2 multi-topic communication system
+
+# Random String Publisher parameters
+random_string_publisher:
+  ros__parameters:
+    publish_rate_hz: 2.0
+    string_type: "sentence"  # word, sentence, uuid
+    word_count: 5
+    word_length: 7
+
+# Random Number Publisher parameters  
+random_number_publisher:
+  ros__parameters:
+    publish_rate_hz: 1.0
+    distribution_type: "normal"  # uniform, normal, exponential
+    data_points: 10
+    mean_value: 0.0
+    std_deviation: 1.0
+    min_value: -10.0
+    max_value: 10.0
+
+# Random Sensor Publisher parameters
+random_sensor_publisher:
+  ros__parameters:
+    publish_rate_hz: 10.0
+    sensor_name: "imu_sensor"
+    noise_level: 0.1
+    temperature_base: 25.0
+    humidity_base: 60.0
+    pressure_base: 1013.25
+
+# Random Geometry Publisher parameters
+random_geometry_publisher:
+  ros__parameters:
+    publish_rate_hz: 5.0
+    motion_type: "random_walk"  # random_walk, circular, linear
+    motion_scale: 1.0
+    frame_id: "base_link"
+
+# String Subscriber parameters
+string_subscriber:
+  ros__parameters:
+    enable_analysis_publishing: true
+    analysis_rate_hz: 1.0
+
+# Number Subscriber parameters  
+number_subscriber:
+  ros__parameters:
+    enable_statistics_publishing: true
+    statistics_rate_hz: 0.5
+    window_size: 20
+
+# Sensor Subscriber parameters
+sensor_subscriber:
+  ros__parameters:
+    enable_health_monitoring: true
+    health_check_rate_hz: 2.0
+    temperature_limits: [-10.0, 60.0]
+    humidity_limits: [0.0, 100.0] 
+    pressure_limits: [800.0, 1200.0]
+
+# Geometry Subscriber parameters
+geometry_subscriber:
+  ros__parameters:
+    enable_trajectory_tracking: true
+    max_trajectory_points: 100
+    velocity_threshold: 0.1
