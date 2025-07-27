@@ -59,6 +59,13 @@ add_executable(random_geometry_publisher src/random_geometry_publisher.cpp)
 target_link_libraries(random_geometry_publisher random_generator)
 ament_target_dependencies(random_geometry_publisher rclcpp geometry_msgs)
 
+add_executable(enhanced_publisher src/enhanced_publisher.cpp)
+target_link_libraries(enhanced_publisher random_generator)
+ament_target_dependencies(enhanced_publisher rclcpp std_msgs)
+
+add_executable(system_info_service src/system_info_service.cpp)
+ament_target_dependencies(system_info_service rclcpp std_msgs)
+
 # Subscribers
 add_executable(string_subscriber src/string_subscriber.cpp)
 ament_target_dependencies(string_subscriber rclcpp std_msgs)
@@ -69,14 +76,20 @@ ament_target_dependencies(number_subscriber rclcpp std_msgs)
 add_executable(sensor_subscriber src/sensor_subscriber.cpp)
 ament_target_dependencies(sensor_subscriber rclcpp std_msgs sensor_msgs)
 
+add_executable(geometry_subscriber src/geometry_subscriber.cpp)
+ament_target_dependencies(geometry_subscriber rclcpp geometry_msgs)
+
 # Make sure the custom messages are built before the executables that use them
 rosidl_get_typesupport_target(cpp_typesupport_target ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 target_link_libraries(random_number_publisher "${cpp_typesupport_target}")
 target_link_libraries(random_sensor_publisher "${cpp_typesupport_target}")
+target_link_libraries(enhanced_publisher "${cpp_typesupport_target}")
+target_link_libraries(system_info_service "${cpp_typesupport_target}")
 target_link_libraries(string_subscriber "${cpp_typesupport_target}")
 target_link_libraries(number_subscriber "${cpp_typesupport_target}")
 target_link_libraries(sensor_subscriber "${cpp_typesupport_target}")
+target_link_libraries(geometry_subscriber "${cpp_typesupport_target}")
 
 # Install executables
 install(TARGETS
@@ -86,9 +99,12 @@ install(TARGETS
   random_number_publisher
   random_sensor_publisher
   random_geometry_publisher
+  enhanced_publisher
+  system_info_service
   string_subscriber
   number_subscriber
   sensor_subscriber
+  geometry_subscriber
   random_generator
   DESTINATION lib/${PROJECT_NAME})
 

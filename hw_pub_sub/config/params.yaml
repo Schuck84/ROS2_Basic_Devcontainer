@@ -65,3 +65,12 @@ geometry_subscriber:
     enable_trajectory_tracking: true
     max_trajectory_points: 100
     velocity_threshold: 0.1
+
+# Enhanced Publisher parameters
+enhanced_publisher:
+  ros__parameters:
+    publish_rate_hz: 1.0
+    topic_name: "/enhanced_data"
+    generator_type: "mixed"  # mixed, config_based
+    enable_health_monitoring: true
+    auto_adjust_rate: false
